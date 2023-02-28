@@ -95,7 +95,7 @@ const nodeJS = Categories.create({
 console.log("CategoryID:", nodeJS.id);
 
 
-sequelize.sync({ aletr: true }).then((data) => {
+sequelize.sync({ alert: true }).then((data) => {
     console.log("Table and model synced successfully");
 }).catch((err) => {
     console.log("Error syncing the table and model!")
