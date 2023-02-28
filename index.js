@@ -12,7 +12,6 @@ sequelize.drop({ match: /_test$/ });
 const Tickets = sequelize.define('tickets', {
     author: {
         type: DataTypes.INTEGER,
-        unique: true
     },
     title: {
         type: DataTypes.STRING,
