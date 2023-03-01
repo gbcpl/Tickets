@@ -14,7 +14,7 @@ app.get('/categories', (req, res) => {
                                                        
 });
 
-app.get('/closedTickets', (req, res) => {       
+app.get('/closedtickets', (req, res) => {       
     res.sendFile('closedtickets.html', {root: __dirname});      
                                                        
 });
