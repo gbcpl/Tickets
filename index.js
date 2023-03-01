@@ -1,9 +1,13 @@
 const Sequelize = require('sequelize');
-const { DataTypes, Op } = Sequelize;
+const { DataTypes } = Sequelize;
+require('dotenv').config();
 
-  
-const sequelize = new Sequelize('ticket', 'root', 'root', {
-    dialect: 'mariadb'
+const sqlDB = process.env.SQLDB;
+const sqlUser = process.env.SQLUSER;
+const sqlPassword = process.env.SQLPASS;
+
+const sequelize = new Sequelize(sqlDB, sqlUser, sqlPassword, {
+    dialect: 'mariadb',
 });
 
 
@@ -34,7 +38,7 @@ const Tickets = sequelize.define('tickets', {
     subcategory: {
         type: DataTypes.INTEGER,
     },
-    createdAt: {
+    createdDate: {
         type: DataTypes.DATE,
     },
     closingDate: {
@@ -47,6 +51,7 @@ const Tickets = sequelize.define('tickets', {
 const LogTickets = sequelize.define('logTickets', {
     ticket: {
         type: DataTypes.INTEGER,
+        allowNull: false,
     },
     author: {
         type: DataTypes.INTEGER,
@@ -87,6 +92,14 @@ const Categories = sequelize.define('categories', {
     timestamps: false
 });
 
+Tickets.hasMany(LogTickets, {
+    ondelete: "Cascade" })
+LogTickets.belongsTo(Tickets, {
+    foreignKey: 'ticket',
+    as: "ticketdiscord",
+    ondelete: "Cascade"
+});
+
 const nodeJS = Categories.create({ 
     parent: 1, 
     name: "NodeJS",
@@ -94,6 +107,13 @@ const nodeJS = Categories.create({
  });
 console.log("CategoryID:", nodeJS.id);
 
+
+sequelize.authenticate().then(() => {
+    console.log('Connection has been established successfully.');
+ }).catch((error) => {
+    console.error('Unable to connect to the database: ', error);
+ });
+ 
 
 sequelize.sync({ alert: true }).then((data) => {
     console.log("Table and model synced successfully");
