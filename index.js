@@ -7,6 +7,7 @@ const sqlUser = process.env.SQLUSER;
 const sqlPassword = process.env.SQLPASS;
 
 const sequelize = new Sequelize(sqlDB, sqlUser, sqlPassword, {
+    host: 'localhost',
     dialect: 'mariadb',
 });
 
@@ -80,6 +81,7 @@ const Categories = sequelize.define('categories', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
             len: [4, 20]
         }
@@ -92,21 +94,31 @@ const Categories = sequelize.define('categories', {
     timestamps: false
 });
 
+const leProbleme = Tickets.create({ 
+    author: 1,
+    title: "souci avec sequelize",
+    description: "je ne comprends pas pourriez vous m'expliquer comment faire une foreign key",
+    category: 1,
+    createdDate: "01/03/2023",
+})
+
+const maReponse = LogTickets.create({ 
+    ticket: 1,
+    author: 1,
+    message: "Tu es naze",
+    state: "en cours",
+    date: "02/03/2023",
+})
+
+
 Tickets.hasMany(LogTickets, {
     ondelete: "Cascade" })
+    
 LogTickets.belongsTo(Tickets, {
     foreignKey: 'ticket',
     as: "ticketdiscord",
     ondelete: "Cascade"
 });
-
-const nodeJS = Categories.create({ 
-    parent: 1, 
-    name: "NodeJS",
-    logo: "img/logo.png"
- });
-console.log("CategoryID:", nodeJS.id);
-
 
 sequelize.authenticate().then(() => {
     console.log('Connection has been established successfully.');
