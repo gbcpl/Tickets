@@ -1,16 +1,6 @@
 const Sequelize = require('sequelize');
 const { DataTypes } = Sequelize;
-require('dotenv').config();
-
-const sqlDB = process.env.SQLDB;
-const sqlUser = process.env.SQLUSER;
-const sqlPassword = process.env.SQLPASS;
-
-const sequelize = new Sequelize(sqlDB, sqlUser, sqlPassword, {
-    host: 'localhost',
-    dialect: 'mariadb',
-});
-
+const sequelize = require("../config/database-config.js");
 
 sequelize.drop({ match: /_test$/ });
 
