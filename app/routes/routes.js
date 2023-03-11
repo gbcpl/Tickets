@@ -5,10 +5,8 @@ const { QueryTypes } = require('sequelize');
 
 
 router.get('/:id', async function(req,res){
-    console.log(req.params.id)
-
     try {
-        const sqlQuery = 'SELECT id, author, description FROM tickets WHERE id = ?';
+        const sqlQuery = 'SELECT * FROM tickets WHERE id = ?';
         const rows = await sequelize.query(sqlQuery, {
             replacements: [req.params.id],
             type: QueryTypes.SELECT

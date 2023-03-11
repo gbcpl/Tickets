@@ -2,8 +2,13 @@ const express = require('express'); //Import the express dependency
 const app = express();              //Instantiate an express app, the main work horse of this server
 const port = 8000;                  //Save the port number where your server will be listening
 const hostname = '127.0.0.1';
+const cors = require('cors')
+
 
 // const path = require('path');
+
+app.use(cors())
+
 const ticketRouter = require('./app/routes/routes');
 app.use('/tickets', ticketRouter);
 

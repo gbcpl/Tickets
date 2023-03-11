@@ -92,6 +92,14 @@ const leProbleme = Tickets.create({
     createdDate: "01/03/2023",
 })
 
+const deuxiemeTicket = Tickets.create({ 
+    author: 2,
+    title: "comment créer un tableau",
+    description: "je suis tout pourri en html et je souhaiterais l'aide d'un professionnel",
+    category: 1,
+    createdDate: "11/03/2023",
+})
+
 const maReponse = LogTickets.create({ 
     ticket: 1,
     author: 1,
