@@ -4,9 +4,10 @@ require('dotenv').config({path:__dirname+'/./../../.env'})
 const sqlDB = process.env.SQLDB;
 const sqlUser = process.env.SQLUSER;
 const sqlPassword = process.env.SQLPASS;
+const sqlHost = process.env.SQLHOST;
 
 const sequelize = new Sequelize(sqlDB, sqlUser, sqlPassword, {
-    host: 'localhost',
+    host: sqlHost,
     dialect: 'mariadb',
 });
 

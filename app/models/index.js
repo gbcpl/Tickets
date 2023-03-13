@@ -89,7 +89,7 @@ const leProbleme = Tickets.create({
     title: "souci avec sequelize",
     description: "je ne comprends pas pourriez vous m'expliquer comment faire une foreign key",
     category: 1,
-    createdDate: "01/03/2023",
+    createdDate: "2023-03-01",
 })
 
 const deuxiemeTicket = Tickets.create({ 
@@ -97,7 +97,7 @@ const deuxiemeTicket = Tickets.create({
     title: "comment créer un tableau",
     description: "je suis tout pourri en html et je souhaiterais l'aide d'un professionnel",
     category: 1,
-    createdDate: "11/03/2023",
+    createdDate: "2023-03-13",
 })
 
 const maReponse = LogTickets.create({ 
@@ -105,7 +105,7 @@ const maReponse = LogTickets.create({
     author: 1,
     message: "Tu es naze",
     state: "en cours",
-    date: "02/03/2023",
+    date: "2023-03-02",
 })
 
 
