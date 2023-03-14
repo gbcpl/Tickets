@@ -101,7 +101,7 @@ const deuxiemeTicket = Tickets.create({
 })
 
 const maReponse = LogTickets.create({ 
-    ticket: 1,
+    ticket: 8,
     author: 1,
     message: "Tu es naze",
     state: "en cours",
@@ -125,9 +125,11 @@ sequelize.authenticate().then(() => {
  });
  
 
-sequelize.sync({ alert: true }).then((data) => {
+sequelize.sync({ alert: true }).then(_data => {
     console.log("Table and model synced successfully");
 }).catch((err) => {
     console.log("Error syncing the table and model!")
+    console.error(err)
 });
 
+module.exports = Tickets;
