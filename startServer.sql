@@ -4,19 +4,6 @@ SET PASSWORD FOR 'root'@'localhost' = PASSWORD('94dy8vURzDEF78DHZ8DZ8712DKz3Nh7'
 
 CREATE DATABASE IF NOT EXISTS tickets;
 
-CREATE TABLE tickets
-(
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
-    author INT NOT NULL,
-    category VARCHAR(500) NOT NULL,
-    title VARCHAR(60) NOT NULL,
-    tdescription VARCHAR(1000) NOT NULL,
-    screenshot BLOB,
-    createdDate DATETIME,
-    closingDate DATETIME
-    FOREIGN KEY (category) REFERENCES categories(id)
-)
-
 CREATE TABLE logtickets
 (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -34,6 +21,19 @@ CREATE TABLE categories
     cname VARCHAR(60) NOT NULL,
     idDiscord VARCHAR(80),
     parent INT,
+)
+
+CREATE TABLE tickets
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+    author INT NOT NULL,
+    category VARCHAR(500) NOT NULL,
+    title VARCHAR(60) NOT NULL,
+    tdescription VARCHAR(1000) NOT NULL,
+    screenshot BLOB,
+    createdDate DATETIME,
+    closingDate DATETIME
+    FOREIGN KEY (category) REFERENCES categories(id)
 )
 
 CREATE TABLE login
