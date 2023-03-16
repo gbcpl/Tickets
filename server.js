@@ -4,12 +4,10 @@ const app = express();
 const port = 8000;
 const cors = require('cors')
 
-
-
 app.use(cors())
+app.use(express.json())
 
-const ticketRouter = require('./app/routes/routes');
-app.use('/tickets', ticketRouter);
+app.use('/api', require('./app/routes/api'))
 
 const index = __dirname + '/app/views/';
 app.use(express.static(index));
