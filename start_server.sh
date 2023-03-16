@@ -1,4 +1,8 @@
-apt update & apt install mariadb-server -y
+apt update 
+
+sleep 10
+
+apt install mariadb-server -y
 
 echo "You can use : mysql_secure_installation"
 
