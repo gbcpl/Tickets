@@ -8,7 +8,7 @@ CREATE TABLE tickets
 (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
     author INT NOT NULL,
-    category VARCHAR NOT NULL,
+    category VARCHAR(500) NOT NULL,
     title VARCHAR(60) NOT NULL,
     tdescription VARCHAR(1000) NOT NULL,
     screenshot BLOB,
