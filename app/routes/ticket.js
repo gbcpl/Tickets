@@ -4,18 +4,6 @@ const router = express.Router();
 const { QueryTypes } = require('sequelize');
 const Tickets = require('../models/index.js');
 const sequelize = require('../config/database-config')
-const fs = require('fs');
-const path = require('path');
-
-// app.use(express.json())
-// app.use('/tickets', router);
-
-router.get('/logs', (req, res) => {
-  const pageName = req.params.pageName;
-  const pagesDir = path.join(__dirname, '..', '..', 'app', 'pages');
-  res.sendFile(path.join(pagesDir, pageName));
-  
-});
 
 router.get('/count', async (req, res) => {
     try {

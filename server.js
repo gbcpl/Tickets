@@ -8,7 +8,7 @@ const path = require('path');
 app.use(cors())
 app.use(express.json())
 
-const ticketRouter = require('./app/routes/routes');
+const ticketRouter = require('./app/routes/ticket');
 app.use('/tickets', ticketRouter);
 
 app.use('/pages', express.static(path.join(__dirname, 'app', 'pages')));
