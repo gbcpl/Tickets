@@ -4,15 +4,14 @@ SET PASSWORD FOR 'root'@'localhost' = PASSWORD('94dy8vURzDEF78DHZ8DZ8712DKz3Nh7'
 
 CREATE DATABASE IF NOT EXISTS tickets;
 
-CREATE TABLE logtickets
+USE tickets;
+
+CREATE TABLE categories
 (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    author INT NOT NULL,
-    tmessage VARCHAR(1000) NOT NULL,
-    ticketId INT,
-    tdate DATETIME,
-    tstate VARCHAR(60),
-    FOREIGN KEY (ticketId) REFERENCES tickets(id)
+    cname VARCHAR(60) NOT NULL,
+    idDiscord VARCHAR(80),
+    parent INT
 );
 
 CREATE TABLE tickets
@@ -28,12 +27,15 @@ CREATE TABLE tickets
     FOREIGN KEY (category) REFERENCES categories(id)
 );
 
-CREATE TABLE categories
+CREATE TABLE logtickets
 (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    cname VARCHAR(60) NOT NULL,
-    idDiscord VARCHAR(80),
-    parent INT
+    author INT NOT NULL,
+    tmessage VARCHAR(1000) NOT NULL,
+    ticketId INT,
+    tdate DATETIME,
+    tstate VARCHAR(60),
+    FOREIGN KEY (ticketId) REFERENCES tickets(id)
 );
 
 CREATE TABLE login
