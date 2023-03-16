@@ -10,7 +10,7 @@ CREATE TABLE tickets
     author INT NOT NULL,
     category VARCHAR NOT NULL,
     title VARCHAR(60) NOT NULL,
-    description VARCHAR(1000) NOT NULL,
+    tdescription VARCHAR(1000) NOT NULL,
     screenshot BLOB,
     createdDate DATETIME,
     closingDate DATETIME
@@ -21,17 +21,17 @@ CREATE TABLE logtickets
 (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     author INT NOT NULL,
-    message VARCHAR(1000) NOT NULL,
+    tmessage VARCHAR(1000) NOT NULL,
     ticketId INT,
-    date DATETIME,
-    state VARCHAR(60),
+    tdate DATETIME,
+    tstate VARCHAR(60),
     FOREIGN KEY (ticketId) REFERENCES tickets(id)
 )
 
 CREATE TABLE categories
 (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    name VARCHAR(60) NOT NULL,
+    cname VARCHAR(60) NOT NULL,
     idDiscord VARCHAR(80),
     parent INT,
 )
