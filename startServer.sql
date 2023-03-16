@@ -20,7 +20,7 @@ CREATE TABLE categories
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     cname VARCHAR(60) NOT NULL,
     idDiscord VARCHAR(80),
-    parent INT,
+    parent INT
 )
 
 CREATE TABLE tickets
@@ -32,7 +32,7 @@ CREATE TABLE tickets
     tdescription VARCHAR(1000) NOT NULL,
     screenshot BLOB,
     createdDate DATETIME,
-    closingDate DATETIME
+    closingDate DATETIME,
     FOREIGN KEY (category) REFERENCES categories(id)
 )
 
