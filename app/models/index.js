@@ -4,6 +4,30 @@ const sequelize = require("../config/database-config.js");
 
 sequelize.drop({ match: /_test$/ });
 
+const LogTickets = sequelize.define('logTickets', {
+    ticket: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    author: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    message: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    state: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    date: {
+        type: DataTypes.DATE,
+    }
+}, {
+    timestamps: false
+});
+
 const Tickets = sequelize.define('tickets', {
     author: {
         type: DataTypes.INTEGER,
@@ -33,30 +57,6 @@ const Tickets = sequelize.define('tickets', {
         type: DataTypes.DATE,
     },
     closingDate: {
-        type: DataTypes.DATE,
-    }
-}, {
-    timestamps: false
-});
-
-const LogTickets = sequelize.define('logTickets', {
-    ticket: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    author: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    message: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    state: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    date: {
         type: DataTypes.DATE,
     }
 }, {
