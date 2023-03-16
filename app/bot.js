@@ -32,4 +32,4 @@ client.on('threadCreate', thread => {
   }
 })
 
-client.login(process.env.DISCORD_TOKEN)
+module.exports = client

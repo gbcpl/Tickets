@@ -1,8 +1,7 @@
 const express = require('express');
-require('./app/bot')
+const discord = require('./app/bot')
 const app = express();
-const port = 8000; 
-const hostname = '127.0.0.1';
+const port = 8000;
 const cors = require('cors')
 
 
@@ -20,6 +19,7 @@ app.get('/', function (req,res) {
 });
 
 
-app.listen(port, () => {            //server starts listening for any attempts from a client to connect at port: {port}
-    console.log(`Now listening on http://${hostname}:${port}/`);
+app.listen(port, () => {
+    console.log(`Now listening on port ${port}`);
+    discord.login(process.env.DISCORD_TOKEN)
 });

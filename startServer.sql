@@ -13,7 +13,7 @@ CREATE TABLE logtickets
     tdate DATETIME,
     tstate VARCHAR(60),
     FOREIGN KEY (ticketId) REFERENCES tickets(id)
-)
+);
 
 CREATE TABLE tickets
 (
@@ -26,7 +26,7 @@ CREATE TABLE tickets
     createdDate DATETIME,
     closingDate DATETIME,
     FOREIGN KEY (category) REFERENCES categories(id)
-)
+);
 
 CREATE TABLE categories
 (
@@ -34,7 +34,7 @@ CREATE TABLE categories
     cname VARCHAR(60) NOT NULL,
     idDiscord VARCHAR(80),
     parent INT
-)
+);
 
 CREATE TABLE login
 (
@@ -46,7 +46,7 @@ CREATE TABLE login
     passID CHAR(24),
     expiration BIGINT,
     active BOOLEAN DEFAULT true
-)
+);
 
 CREATE TABLE token
 (
@@ -55,6 +55,6 @@ CREATE TABLE token
     expire DATETIME NOT NULL,
     loginfo PRIMARY KEY NOT NULL,
     FOREIGN KEY (loginfo) REFERENCES login(id)
-)
+);
 
 flush privileges;
