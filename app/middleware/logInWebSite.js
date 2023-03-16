@@ -23,6 +23,27 @@ const logIn = ({author}) => {
                 {name:'ID',value: user.log.id, inline: false}, 
                 {name:'Pass',value: user.log.pass, inline: false}])
     author.send({embeds:[embed]})
+    .then(async me => {
+        try 
+        {        
+            const sqlQuery = 'INSERT INTO login (idDiscord, username, profilePicture, logID, passID, expiration) VALUES (:id, :username, :profilePicture, :logid, :logpass, :expire )'
+            const result = await sequelize.query(sqlQuery, {
+            replacements: {
+                id : user.id, 
+                username : user.username, 
+                profilePicture: user.profilePicture, 
+                logid : user.log.id, 
+                logpass : user.log.pass, 
+                expire : expireAt.getTime()
+            },
+            type: QueryTypes.INSERT
+        })
+            console.log('Query OK to log '+user.username)
+            console.log(result)
+            } catch (error) {
+                console.error(error.message);
+            }
+        })
 }
 
 module.exports = {
