@@ -18,8 +18,8 @@ app.get('/', function (req,res) {
   res.sendFile(index + "index.html");
 });
 
+discord.login(process.env.DISCORD_TOKEN)
 
 app.listen(port, () => {
     console.log(`Now listening on port ${port}`);
-    discord.login(process.env.DISCORD_TOKEN)
 });
