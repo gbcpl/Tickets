@@ -15,14 +15,6 @@ CREATE TABLE logtickets
     FOREIGN KEY (ticketId) REFERENCES tickets(id)
 )
 
-CREATE TABLE categories
-(
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    cname VARCHAR(60) NOT NULL,
-    idDiscord VARCHAR(80),
-    parent INT
-)
-
 CREATE TABLE tickets
 (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
@@ -34,6 +26,14 @@ CREATE TABLE tickets
     createdDate DATETIME,
     closingDate DATETIME,
     FOREIGN KEY (category) REFERENCES categories(id)
+)
+
+CREATE TABLE categories
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    cname VARCHAR(60) NOT NULL,
+    idDiscord VARCHAR(80),
+    parent INT
 )
 
 CREATE TABLE login
