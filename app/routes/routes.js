@@ -10,35 +10,11 @@ const path = require('path');
 // app.use(express.json())
 // app.use('/tickets', router);
 
-router.get('/pages/:pageName', (req, res) => {
-    const pageName = req.params.pageName;
-    const pagesDir = path.join(__dirname, '..', '..', 'app', 'pages');
-    res.sendFile(path.join(pagesDir, pageName));
-    
-});
-
-function generateNouvellePage(ticket) {
-
-    const htmlContent = "<html><head><title>Nouveau ticket</title></head><body>" + "<p>Salut</p>" + "</body></html>";
-    
-    const fileName = `ticket-${ticket.id}.html`;
-    const filePath = `./app/pages/${fileName}`;
-
-    fs.writeFile(filePath, htmlContent, (err) => {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log(`La page pour le ticket ${ticket.id} a été créée`);
-      }
-    });
-  }
-
-router.post('/pages', (req, res) => {
-    const newTicket = req.body;
-    
-    generateNouvellePage(newTicket);
-
-    res.send(newTicket);
+router.get('/logs', (req, res) => {
+  const pageName = req.params.pageName;
+  const pagesDir = path.join(__dirname, '..', '..', 'app', 'pages');
+  res.sendFile(path.join(pagesDir, pageName));
+  
 });
 
 router.get('/count', async (req, res) => {
@@ -50,6 +26,30 @@ router.get('/count', async (req, res) => {
       console.error(error);
       res.status(500).json({ error: 'Erreur lors du comptage des tickets.' });
     }
+});
+
+router.get('/categories', async function(req, res) {
+  try {
+    const sqlQuery = 'SELECT * FROM categories';
+    const categories = await sequelize.query(sqlQuery, {
+      type: QueryTypes.SELECT
+    });
+    res.status(200).json(categories);
+  } catch (error) {
+    res.status(400).send(error.message)
+  }
+});
+
+router.get('/tags', async function(req,res){
+  try {
+      const sqlQuery = 'SELECT * FROM tickets WHERE category = 1';
+      const rows = await sequelize.query(sqlQuery, {
+          type: QueryTypes.SELECT
+        });
+      res.status(200).json(rows);
+  } catch (error) {
+      res.status(400).send(error.message)
+  }
 });
 
 

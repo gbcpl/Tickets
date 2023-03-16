@@ -63,6 +63,43 @@ const LogTickets = sequelize.define('logTickets', {
     timestamps: false
 });
 
+const LogIn = sequelize.define('login', {
+    idDiscord: {
+        type: DataTypes.CHAR
+    },
+    username: {
+        type: DataTypes.STRING,
+    },
+    profilePictre: {
+        type: DataTypes.STRING,
+    },
+    logID: {
+        type: DataTypes.STRING,
+    },
+    passID: {
+        type: DataTypes.STRING,
+    },
+    expiration: {
+        type: DataTypes.BIGINT,
+    },
+    active: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
+    }
+})
+
+const Token = sequelize.define('token', {
+    token: {
+        type: DataTypes.CHAR
+    },
+    expire: {
+        type: DataTypes.DATE,
+    },
+    loginfo: {
+        type: DataTypes.STRING,
+        primaryKey: true
+    }
+})
 
 const Categories = sequelize.define('categories', {
     parent: {
@@ -73,40 +110,46 @@ const Categories = sequelize.define('categories', {
         allowNull: false,
         unique: true,
         validate: {
-            len: [4, 20]
+            len: [2, 20]
         }
     },
-    logo: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    }
 }, {
     timestamps: false
 });
 
-const leProbleme = Tickets.create({ 
-    author: 1,
-    title: "souci avec sequelize",
-    description: "je ne comprends pas pourriez vous m'expliquer comment faire une foreign key",
-    category: 1,
-    createdDate: "2023-03-01",
+/*
+const html = Categories.create({ 
+    name: "html"
 })
 
-const deuxiemeTicket = Tickets.create({ 
-    author: 2,
-    title: "comment créer un tableau",
-    description: "je suis tout pourri en html et je souhaiterais l'aide d'un professionnel",
-    category: 1,
-    createdDate: "2023-03-13",
+const css = Categories.create({ 
+    name: "css"
 })
-
-const maReponse = LogTickets.create({ 
-    ticket: 8,
-    author: 1,
-    message: "Tu es naze",
-    state: "en cours",
-    date: "2023-03-02",
+const js = Categories.create({ 
+    name: "js"
 })
+const php = Categories.create({ 
+    name: "php"
+})
+const sql = Categories.create({ 
+    name: "sql"
+})
+const react = Categories.create({ 
+    name: "react"
+})
+const reactnative = Categories.create({ 
+    name: "reactnative"
+})
+const flutter = Categories.create({ 
+    name: "flutter"
+})
+const symphony = Categories.create({ 
+    name: "symphony"
+})
+const bootstrap = Categories.create({ 
+    name: "bootstrap"
+})
+*/
 
 
 Tickets.hasMany(LogTickets, {
