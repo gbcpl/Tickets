@@ -1,5 +1,5 @@
 const express = require('express');
-require('./app/middleware/bot')
+require('./app/bot')
 const app = express();
 const port = 8000; 
 const hostname = '127.0.0.1';
