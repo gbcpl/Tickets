@@ -15,9 +15,7 @@ sleep 10
 echo "===================================="
 echo "Starting restart"
 
-
-
-service mysql restart
+service mariadb restart
 
 echo "===================================="
 echo "Waiting restart of mysql : 10 seconds"
