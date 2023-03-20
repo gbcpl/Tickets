@@ -6,7 +6,11 @@ sleep 10
 echo "===================================="
 echo "Starting mysql install"
 
-apt install mariadb-server -y
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
+add-apt-repository 'deb http://ftp.osuosl.org/pub/mariadb/repo/5.5/ubuntuprecise main'
+apt-get update
+apt-get install mariadb-server -y
+mysqladmin --version
 
 echo "===================================="
 echo "Waiting end of mysql installation : 10 seconds"
