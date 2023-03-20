@@ -44,7 +44,7 @@ CREATE TABLE login
     username VARCHAR(60),
     profilePicture VARCHAR(255),
     logID INT(4),
-    passID CHAR(24),
+    passID CHAR(42),
     expiration BIGINT,
     active BOOLEAN DEFAULT true
 );
