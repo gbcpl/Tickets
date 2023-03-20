@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { QueryTypes } = require('sequelize');
-const Tickets = require('../models/index.js');
 const sequelize = require('../config/database-config')
 
 router.get('/count', async (req, res) => {
@@ -44,12 +43,13 @@ router.get('/tags', async function(req,res){
 router.post('/register', async (req, res) => {
     try 
         {        
-        const sqlQuery = 'INSERT INTO tickets (title, description, category) VALUES (:title, :description, :category)'
+        const sqlQuery = 'INSERT INTO tickets (title, description, category, createdDate) VALUES (:title, :description, :category, :createdDate)'
         const result = await sequelize.query(sqlQuery, {
           replacements: {
               title: req.body.title,
               description: req.body.description,
-              category: Number(req.body.category)
+              category: Number(req.body.category),
+              createdDate: req.body.createdDate
           },
           type: QueryTypes.INSERT
       });

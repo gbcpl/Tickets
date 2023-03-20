@@ -23,8 +23,7 @@ CREATE TABLE tickets
     tdescription VARCHAR(1000) NOT NULL,
     screenshot BLOB,
     createdDate DATETIME,
-    closingDate DATETIME,
-    FOREIGN KEY (category) REFERENCES categories(id)
+    closingDate DATETIME
 );
 
 CREATE TABLE logtickets
@@ -55,7 +54,7 @@ CREATE TABLE token
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     token VARCHAR(300) NOT NULL,
     expire DATETIME NOT NULL,
-    loginfo PRIMARY KEY NOT NULL,
+    loginfo INT UNIQUE NOT NULL,
     FOREIGN KEY (loginfo) REFERENCES login(id)
 );
 
