@@ -1,5 +1,6 @@
 const {generateRandomPassword} = require('./../functions/generate-value')
 const {EmbedBuilder} = require('discord.js')
+const { QueryTypes } = require('sequelize');
 const sequelize = require('../config/database-config')
 
 const logIn = ({author}) => {
